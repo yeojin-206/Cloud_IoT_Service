@@ -1,0 +1,325 @@
+:root {
+  --bg: #0f172a;
+  --bg-soft: #1e293b;
+  --card: #111c33;
+  --border: #1f2d4a;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #60a5fa;
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand h1 { font-size: 18px; margin: 0; font-weight: 600; white-space: nowrap; }
+.brand h1 small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 12px var(--ok);
+  flex-shrink: 0;
+}
+
+.meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  padding: 6px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.chip-ok { color: var(--ok); border-color: rgba(34,197,94,0.4); }
+.chip-warn { color: var(--warn); border-color: rgba(245,158,11,0.4); }
+.chip-danger { color: var(--danger); border-color: rgba(239,68,68,0.4); }
+
+/* ========== 그리드 ========== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  grid-column: span 6;
+  min-width: 0;
+  overflow: hidden;
+}
+.card-hero { grid-column: span 6; }
+.card-wide { grid-column: span 12; }
+.card h2 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 데이터 출처 배지 */
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: none;
+  letter-spacing: 0;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.badge-real {
+  color: var(--ok);
+  border-color: rgba(34,197,94,0.4);
+  background: rgba(34,197,94,0.1);
+}
+.badge-sim {
+  color: var(--warn);
+  border-color: rgba(245,158,11,0.4);
+  background: rgba(245,158,11,0.1);
+}
+.badge-mix {
+  color: var(--accent);
+  border-color: rgba(96,165,250,0.4);
+  background: rgba(96,165,250,0.1);
+}
+
+/* 항목별 출처 태그 (실측/시뮬) */
+.src {
+  display: inline-block;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 4px;
+  vertical-align: middle;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.src-real {
+  background: rgba(34,197,94,0.15);
+  color: var(--ok);
+}
+.src-sim {
+  background: rgba(245,158,11,0.15);
+  color: var(--warn);
+}
+.badge-calc {
+  color: var(--accent);
+  border-color: rgba(96,165,250,0.4);
+  background: rgba(96,165,250,0.1);
+}
+
+/* 카드 하단 안내 문구 */
+.card-note {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  background: var(--bg-soft);
+  border-left: 3px solid var(--warn);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* ========== 게이지 (스트레스 원) ========== */
+.gauge {
+  position: relative;
+  width: 180px; height: 180px;
+  margin: 8px auto;
+  border-radius: 50%;
+  background: conic-gradient(var(--ok) 0%, var(--warn) 50%, var(--danger) 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.gauge::after {
+  content: '';
+  position: absolute; inset: 16px;
+  border-radius: 50%;
+  background: var(--card);
+}
+.gauge-fill {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--border) 0%, transparent 0%);
+  transition: background 0.5s;
+  z-index: 1;
+}
+.gauge-text {
+  position: relative; z-index: 2;
+  font-size: 40px; font-weight: 700;
+  display: flex; align-items: baseline;
+}
+.gauge-text small { font-size: 14px; color: var(--muted); margin-left: 4px; font-weight: 400; }
+
+.hero-sub {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.hero-sub > span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-soft);
+  padding: 10px 12px;
+  border-radius: 8px;
+  min-width: 0;
+}
+.hero-sub b {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+/* ========== KV 그리드 (Fitbit/환경 카드) ========== */
+.kv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.kv-grid > div {
+  background: var(--bg-soft);
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+.kv-grid span {
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kv-grid b {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-all;
+  line-height: 1.1;
+}
+
+/* ========== 가이드 ========== */
+.guide-steps {
+  margin: 0; padding-left: 20px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+.guide-steps li { color: var(--text); margin-bottom: 6px; }
+#guideTitle {
+  margin: 4px 0 12px;
+  font-size: 16px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* ========== 알림 ========== */
+.alerts {
+  list-style: none;
+  margin: 0; padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.alerts li {
+  padding: 12px 14px;
+  border-left: 4px solid var(--muted);
+  background: var(--bg-soft);
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+.alerts li.lv-WARNING { border-left-color: var(--danger); }
+.alerts li.lv-CAUTION { border-left-color: var(--warn); }
+.alerts li.lv-INFO    { border-left-color: var(--accent); }
+.alerts li.lv-ADVICE  { border-left-color: var(--ok); }
+.alerts li .ts { color: var(--muted); font-size: 11px; margin-right: 8px; }
+.alerts li .code {
+  font-family: ui-monospace, monospace;
+  color: var(--accent);
+  margin-right: 6px;
+  font-size: 12px;
+}
+
+/* ========== 차트 ========== */
+.card-wide canvas {
+  display: block;
+  width: 100% !important;
+  height: 200px !important;
+  max-width: 100%;
+}
+
+/* ========== Footer ========== */
+footer {
+  padding: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ========== 반응형 ========== */
+@media (max-width: 1100px) {
+  .card, .card-hero { grid-column: span 6; }
+  .card-wide { grid-column: span 12; }
+}
+@media (max-width: 720px) {
+  .grid { padding: 12px; gap: 12px; }
+  .card, .card-hero, .card-wide { grid-column: span 12; padding: 16px; }
+  .kv-grid b { font-size: 20px; }
+  .gauge { width: 150px; height: 150px; }
+  .gauge-text { font-size: 32px; }
+  .topbar { padding: 12px 16px; }
+  .brand h1 { font-size: 16px; }
+  footer { flex-direction: column; text-align: center; }
+}

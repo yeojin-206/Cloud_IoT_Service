@@ -1,0 +1,35 @@
+{
+  "name": "smart-healthcare-service",
+  "version": "1.0.0",
+  "description": "On-Premise 방식 스마트 헬스케어 서비스 - 스트레스 관리 (팀 12)",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "server": "node server/app.js",
+    "sensor": "node sensors/iotSensorSimulator.js",
+    "fitbit": "node sensors/fitbitSimulator.js",
+    "dev": "concurrently \"npm run server\" \"npm run sensor\" \"npm run fitbit\""
+  },
+  "keywords": [
+    "iot",
+    "healthcare",
+    "mqtt",
+    "express",
+    "raspberry-pi",
+    "fitbit",
+    "stress"
+  ],
+  "author": "Team 12 (Kim Yeojin, Yang Hyunjun, Jeong Gihyeon, Kyung Jangwook)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "mqtt": "^5.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

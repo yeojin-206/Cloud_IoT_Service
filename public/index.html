@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>스트레스 관리 대시보드 | 팀 12</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <h1>스트레스 관리 헬스케어 <small>— On-Premise</small></h1>
+      </div>
+      <div class="meta">
+        <span id="serverStatus" class="chip chip-ok">서버 확인 중...</span>
+        <span id="userLabel" class="chip">user-001</span>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- 현재 스트레스 카드 -->
+      <section class="card card-hero">
+        <h2>
+          현재 스트레스
+          <span class="badge badge-calc">분석 결과</span>
+        </h2>
+        <div class="gauge">
+          <div id="gaugeFill" class="gauge-fill"></div>
+          <div class="gauge-text">
+            <span id="stressLevel">--</span>
+            <small>/ 100</small>
+          </div>
+        </div>
+        <div class="hero-sub">
+          <span>상태: <b id="stressStatus">--</b></span>
+          <span>주요 요인: <b id="primaryFactor">--</b></span>
+        </div>
+      </section>
+
+      <!-- 가이드 카드 -->
+      <section class="card">
+        <h2>해결 가이드</h2>
+        <h3 id="guideTitle">데이터 수집 대기 중</h3>
+        <ol id="guideSteps" class="guide-steps">
+          <li>센서 시뮬레이터와 Fitbit 시뮬레이터를 실행해 주세요.</li>
+        </ol>
+      </section>
+
+      <!-- Fitbit 생체 카드 -->
+      <section class="card">
+        <h2>
+          Fitbit 생체 데이터
+          <span class="badge badge-real">실기기 · Fitbit Web API</span>
+        </h2>
+        <div class="kv-grid">
+          <div><span>심박수 (BPM)</span><b id="hr">--</b></div>
+          <div><span>HRV (ms)</span><b id="hrv">--</b></div>
+          <div><span>SpO₂ (%)</span><b id="spo2">--</b></div>
+          <div><span>1분 걸음수</span><b id="steps">--</b></div>
+          <div><span>수면 점수</span><b id="sleep">--</b></div>
+        </div>
+      </section>
+
+      <!-- 환경 카드 -->
+      <section class="card">
+        <h2>
+          주변 환경 (IoT 센서)
+          <span class="badge badge-mix">혼합</span>
+        </h2>
+        <div class="kv-grid">
+          <div><span>온도 (°C) <em class="src src-real">실측</em></span><b id="temp">--</b></div>
+          <div><span>습도 (%) <em class="src src-real">실측</em></span><b id="humi">--</b></div>
+          <div><span>CO₂ (ppm) <em class="src src-sim">시뮬</em></span><b id="co2">--</b></div>
+          <div><span>소음 (dB) <em class="src src-sim">시뮬</em></span><b id="noise">--</b></div>
+          <div><span>위치</span><b id="loc">--</b></div>
+        </div>
+        <p class="card-note">
+          ※ 온도 · 습도는 RPi 에 연결된 DHT11 실측. CO₂ · 소음은 시뮬레이터(MH-Z19/KY-038 미연결).
+        </p>
+      </section>
+
+      <!-- 스트레스 추이 차트 -->
+      <section class="card card-wide">
+        <h2>스트레스 추이 (최근 50개)</h2>
+        <canvas id="chart" height="120"></canvas>
+      </section>
+
+      <!-- 알림 목록 -->
+      <section class="card card-wide">
+        <h2>최근 알림</h2>
+        <ul id="alerts" class="alerts"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <span>팀 12 · 김여진 · 양현준 · 정기현 · 경장욱</span>
+      <span>Express.JS + MQTT.JS + Axios.JS + Raspberry Pi + Fitbit</span>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
