@@ -32,17 +32,11 @@ FITBIT_REDIRECT_URI=http://localhost:3000/auth/fitbit/callback
 FITBIT_POLL_INTERVAL_MS=60000
 EOF
 
-echo "[setup] 2/3 Fitbit 토큰 파일 작성 중..."
-mkdir -p data
-cat > data/fitbit-tokens.json << 'EOF'
-{
-  "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1ZKSFgiLCJzdWIiOiJENURNS1giLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyb3h5IHJociByYWN0IHJwcm8gcnNsZSIsImV4cCI6MTc3NzM3ODQ0OSwiaWF0IjoxNzc3MzQ5NjQ5fQ.7qJwORwAGaJsMcr3vDOCxkMaXnJdyoauCM97iMTSkAU",
-  "refresh_token": "84007d56e21bfc9d53a492fcc2cd3acf5c74b528981bf1817bec5d5840f09ea9",
-  "expires_at": 1777378449582,
-  "user_id": "D5DMKX",
-  "scope": "profile oxygen_saturation sleep heartrate activity"
-}
-EOF
+echo "[setup] 2/3 Fitbit 토큰 파일은 git 으로 동기화됨 (data/fitbit-tokens.json)"
+if [ ! -f data/fitbit-tokens.json ]; then
+  echo "[setup] ⚠️  data/fitbit-tokens.json 없음. git pull 한 번 더 실행하세요."
+  exit 1
+fi
 
 echo "[setup] 3/3 npm 의존성 설치 중 (2-5분 소요)..."
 npm install

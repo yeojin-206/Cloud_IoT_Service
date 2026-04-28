@@ -1,0 +1,7 @@
+{
+  "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1ZKSFgiLCJzdWIiOiJENURNS1giLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyb3h5IHJociByYWN0IHJwcm8gcnNsZSIsImV4cCI6MTc3NzM3ODQ0OSwiaWF0IjoxNzc3MzQ5NjQ5fQ.7qJwORwAGaJsMcr3vDOCxkMaXnJdyoauCM97iMTSkAU",
+  "refresh_token": "84007d56e21bfc9d53a492fcc2cd3acf5c74b528981bf1817bec5d5840f09ea9",
+  "expires_at": 1777378449582,
+  "user_id": "D5DMKX",
+  "scope": "profile oxygen_saturation sleep heartrate activity"
+}
